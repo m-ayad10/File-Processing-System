@@ -1,0 +1,136 @@
+
+@media  (max-width: 419px) {
+    
+    .directory-container
+    {
+        gap: 3%;
+    }
+    .directory-box 
+    {
+        width: 47%;
+        padding: 1rem;
+        margin-top: 1rem;
+        background-color: #fff;
+        border-radius: 8px;
+        text-align: center;
+    }
+    .directory-icon 
+{
+    width: 100%;
+    font-size: 3.5rem;
+}
+ }
+ @media (min-width: 420px) and (max-width: 480px) {
+    
+    .directory-container
+    {
+        gap: 3%;
+    }
+    .directory-box 
+    {
+        width: 47%;
+        padding: 1rem;
+        margin-top: 1rem;
+        background-color: #fff;
+        border-radius: 8px;
+        text-align: center;
+    }
+    .directory-icon 
+{
+    width: 100%;
+    font-size: 3.5rem;
+}
+  }
+
+  @media (min-width: 480px) and (max-width: 599px) {
+    
+    .directory-container
+    {
+        gap: 2%;
+    }
+    .directory-box 
+    {
+        width: 31%;
+        padding: 0.8rem;
+        margin-top: 1rem;
+        background-color: #fff;
+        border-radius: 8px;
+        text-align: center;
+    }
+    .directory-icon 
+{
+    width: 100%;
+    font-size: 3.5rem;
+}
+  }
+  
+  @media (min-width: 600px) and (max-width: 767px) {
+    
+   
+    .directory-container
+    {
+        gap: 1%;
+    }
+    .directory-box 
+    {
+        width: 24%;
+        padding: 0.8rem;
+        margin-top: 1rem;
+        background-color: #fff;
+        border-radius: 8px;
+        text-align: center;
+    }
+    .directory-icon 
+{
+    width: 100%;
+    font-size: 4rem;
+}
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    
+    .directory-container
+    {
+        gap: 1%;
+    }
+    .directory-box 
+    {
+        width: 19%;
+        padding: 1rem;
+        margin-top: 1rem;
+        background-color: #fff;
+        border-radius: 8px;
+        text-align: center;
+    }
+  }
+  @media (min-width: 1024px) and (max-width: 1200px) {
+    .directory-container
+    {
+        gap: 0.8%;
+    }
+    .directory-box 
+    {
+        width: 16%;
+        padding: 1rem;
+        margin-top: 1rem;
+        background-color: #fff;
+        border-radius: 8px;
+        text-align: center;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .directory-container
+    {
+        gap: 0.8%;
+    }
+    .directory-box 
+    {
+        width: 16%;
+        padding: 1rem;
+        margin-top: 1rem;
+        background-color: #fff;
+        border-radius: 8px;
+        text-align: center;
+    }
+  }
+  
