@@ -9,13 +9,14 @@ function StarredFiles() {
   const [data, setData] = useState<FileOrFolderItem[]>([]);
   const [loading, setLoading] = useState(true);
   const { userName } = useUserContext();
+  const SERVER_URL=import.meta.env.VITE_SERVER_URL
 
   useEffect(() => {
     if (!userName) return;
 
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/starred/${userName}`);
+        const response = await axios.get(`${SERVER_URL}/starred/${userName}`);
         const { success, data } = response.data;
         if (success) {
           setData(data);

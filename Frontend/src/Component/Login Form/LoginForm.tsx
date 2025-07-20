@@ -9,6 +9,7 @@ function LoginForm() {
   const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const SERVER_URL=import.meta.env.VITE_SERVER_URL
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -20,7 +21,7 @@ function LoginForm() {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/login",
+        `${SERVER_URL}/login`,
         { userName: name, password },
         {
           headers: {

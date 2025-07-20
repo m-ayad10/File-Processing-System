@@ -21,6 +21,7 @@ export type FileOrFolderItem = {
 function Directory() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const location = useLocation();
+  const SERVER_URL = import.meta.env.VITE_SERVER_URL;
   const pathAfterDashboard = decodeURIComponent(
     location.pathname.replace(/^\/?dashboard\/?/, "")
   );
@@ -32,14 +33,22 @@ function Directory() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/folder/fetch/${pathAfterDashboard}`
+          `${SERVER_URL}/folder/fetch/${pathAfterDashboard}`,
+          { withCredentials: true }
         );
         const { success, data } = response.data;
         if (success) {
           setData(data);
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error fetching folder data:", error);
+        Swal.fire({
+          icon: "error",
+          title: `${error?.response.data.message}` || "Something went wrong",
+          customClass: {
+            popup: "custom-swal-popup",
+          },
+        });
       }
     };
     fetchData();
@@ -67,7 +76,7 @@ function Directory() {
     if (folderName) {
       try {
         const response = await axios.post(
-          `http://localhost:3000/folder/${pathAfterDashboard}`,
+          `${SERVER_URL}/folder/${pathAfterDashboard}`,
           {
             folderName,
           }
@@ -116,7 +125,7 @@ function Directory() {
 
     const formData = new FormData();
     formData.append("file", file);
-    formData.append('userName',userName||'')
+    formData.append("userName", userName || "");
 
     Swal.fire({
       title: `Uploading: ${file.name}`,
@@ -133,7 +142,7 @@ function Directory() {
 
     try {
       const response = await axios.post(
-        `http://localhost:3000/file/${pathAfterDashboard}`,
+        `${SERVER_URL}/file/${pathAfterDashboard}`,
         formData,
         {
           headers: {

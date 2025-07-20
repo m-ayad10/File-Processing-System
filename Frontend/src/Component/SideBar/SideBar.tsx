@@ -14,12 +14,13 @@ type SideBarProps = {
 
 function SideBar({ children }: SideBarProps) {
   const { userName, setUserName } = useUserContext();
+  const SERVER_URL=import.meta.env.VITE_SERVER_URL
   const navigate = useNavigate();
 
   useEffect(() => {
     const getUserDetails = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/verify-token", {
+        const response = await axios.get(`${SERVER_URL}/verify-token`, {
           withCredentials: true,
         });
         const { success, user } = response.data; //{userName: 'Mohammed Ayad', iat: 1745051772, exp: 1745483772}
@@ -35,7 +36,7 @@ function SideBar({ children }: SideBarProps) {
   const SignOut = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/logout",
+        `${SERVER_URL}/logout`,
         {},
         { withCredentials: true }
       );

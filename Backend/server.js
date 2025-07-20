@@ -29,7 +29,7 @@ const fileRouter=require('./Routes/FileRoutes')
 const folderRouter=require('./Routes/FolderRoutes')
 const starredRouter=require('./Routes/StarredRoutes')
 
-app.listen(PORT,()=>
+app.listen(PORT,'0.0.0.0',()=>
 {
     console.log('server started');
 })

@@ -8,6 +8,7 @@ function FilePreview() {
   const navigate = useNavigate();
   const [fileUrl, setFileUrl] = useState("");
   const [fileType, setFileType] = useState("");
+  const SERVER_URL=import.meta.env.VITE_SERVER_URL
 
   const pathAfterDashboard = decodeURIComponent(
     location.pathname.replace(/^\/?preview\/?/, "")
@@ -17,9 +18,9 @@ function FilePreview() {
     const fetchSignedUrl = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:3000/file/signed-url/${pathAfterDashboard}`
+          `${SERVER_URL}/file/signed-url/${pathAfterDashboard}`
         );
-        setFileUrl(res.data.url);
+        setFileUrl(res.data.url);        
         setFileType(pathAfterDashboard.split(".").pop()?.toLowerCase() || "");
       } catch (error) {
         console.error("Error fetching signed URL:", error);
@@ -30,7 +31,7 @@ function FilePreview() {
   }, [pathAfterDashboard]);
 
   const isOfficeFile = (type:string) =>
-    ["doc", "docx", "ppt", "pptx", "xls", "xlsx"].includes(type);
+    ["doc", "docx", "ppt", "pptx", "xls", "xlsx","pdf"].includes(type);
 
   const renderPreview = () => {
     if (!fileUrl) return <p className="text-gray-600">No file to preview.</p>;
@@ -45,17 +46,7 @@ function FilePreview() {
       );
     }
 
-    if (fileType === "pdf") {
-      return (
-        <iframe
-          src={fileUrl}
-          title="PDF Preview"
-          width="100%"
-          height="600px"
-          className="border rounded"
-        />
-      );
-    }
+    
 
     if (["mp4", "webm", "ogg"].includes(fileType)) {
       return (

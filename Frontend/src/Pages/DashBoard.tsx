@@ -9,10 +9,12 @@ function DashBoard() {
   const location = useLocation();
   const { userName } = useUserContext();
   const [size,setSize]=useState<number>(0)
+  const SERVER_URL=import.meta.env.VITE_SERVER_URL
+  
 
   const getFolderSize = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/folder/size/${userName}`);
+      const response = await axios.get(`${SERVER_URL}/folder/size/${userName}`);
       const { success, size} = response.data; //{userName: 'Mohammed Ayad', iat: 1745051772, exp: 1745483772}
       if (success) {
         setSize(size)
@@ -35,10 +37,10 @@ function DashBoard() {
   
 
   return (
-    <div className="p-10">
+    <div className="p-4 md:p-7 lg:p-10">
       {pathAfterDashboard === userName && (
         <div className="block lg:flex gap-2.5">
-          <div className=" bg-white p-10 rounded-lg mb-4 w-full lg:w-1/2">
+          <div className=" bg-white p-7 px-6 sm:p-10 rounded-lg mb-4 w-full lg:w-1/2">
             <h1 className="text-2xl font-medium ">
               Welcome {userName ? userName : ""}
             </h1>

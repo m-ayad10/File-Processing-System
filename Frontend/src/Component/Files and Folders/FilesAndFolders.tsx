@@ -59,7 +59,7 @@ function FilesAndFolders({
 }) {
   const navigate = useNavigate();
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  
+  const SERVER_URL=import.meta.env.VITE_SERVER_URL
   const pathUrl=location.pathname
 
   const toggleDropdown = (id: string) => {
@@ -76,7 +76,7 @@ function FilesAndFolders({
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/starred/${userName}`
+          `${SERVER_URL}/starred/${userName}`
         );
         const { success, data } = response.data;
         if (success) {          
@@ -99,7 +99,7 @@ function FilesAndFolders({
       formData.append("_id", item._id);
       formData.append("userName", userName || "");
       const response = await axios.post(
-        `http://localhost:3000/starred`,
+        `${SERVER_URL}/starred`,
         formData,
         {
           headers: { 'Content-Type': 'application/json'  },
@@ -136,11 +136,11 @@ function FilesAndFolders({
       let response;
       if (pathUrl==='/starred') {
         response = await axios.delete(
-          `http://localhost:3000/starred/${item.fileId}?userName=${userName}`
+          `${SERVER_URL}/starred/${item.fileId}?userName=${userName}`
         );
       }else{
         response = await axios.delete(
-          `http://localhost:3000/starred/${item._id}?userName=${userName}`
+          `${SERVER_URL}/starred/${item._id}?userName=${userName}`
         );
       }
       
@@ -184,8 +184,8 @@ function FilesAndFolders({
 
       const url =
         item.type === "folder"
-          ? `http://localhost:3000/folder/download/${item.path}`
-          : `http://localhost:3000/file/download/${item.path}`;
+          ? `${SERVER_URL}/folder/download/${item.path}`
+          : `${SERVER_URL}/file/download/${item.path}`;
 
       const response = await axios.get(url, {
         responseType: "blob",
@@ -242,11 +242,11 @@ function FilesAndFolders({
       };
 
       if (item.type === "folder") {
-        response = await axios.delete(`http://localhost:3000/folder`, {
+        response = await axios.delete(`${SERVER_URL}/folder`, {
           data: requestData,
         });
       } else {
-        response = await axios.delete(`http://localhost:3000/file/delete`, {
+        response = await axios.delete(`${SERVER_URL}/file/delete`, {
           data: requestData,
         });
       }

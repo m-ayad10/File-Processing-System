@@ -1,13 +1,13 @@
-import Navbar from "../Component/Navbar/Navbar"
-import RegisterForm from "../Component/Register Form/RegisterForm"
+import Navbar from "../Component/Navbar/Navbar";
+import RegisterForm from "../Component/Register Form/RegisterForm";
 
 function SignUp() {
   return (
     <div>
-        <Navbar/>
-      <RegisterForm/>
+      <Navbar />
+      <RegisterForm />
     </div>
-  )
+  );
 }
 
-export default SignUp
+export default SignUp;

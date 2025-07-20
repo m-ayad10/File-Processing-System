@@ -7,7 +7,7 @@ const DirectoryModel = require("../Models/DirectoryModel");
 const SignUp = async (req, res) => {
   try {
     const { email, userName, password } = req.body;
-
+    
     if (!email || !userName || !password) {
       return res
         .status(404)
@@ -82,8 +82,8 @@ const Login = async (req, res) => {
 
    res.cookie("token", jwtToken, {
   httpOnly: true,
-  secure: false, // Set to true in production with HTTPS
-  sameSite: "Lax",
+  secure: true, // Set to true in production with HTTPS
+  sameSite: "None",
 });
 
     res
@@ -119,8 +119,8 @@ const SignOut=async(req,res)=>{
   try {
     res.clearCookie("token", {
       httpOnly: true,
-      secure: false,
-      sameSite: "strict",
+      secure: true,
+      sameSite: "None",
     });        
     res.status(200).json({message:'SignOut successfully',success:true})
   } catch (error) {
