@@ -6,11 +6,12 @@ import Swal from "sweetalert2";
 
 export const ProtectedRoute = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+  const SERVER_URL=import.meta.env.VITE_SERVER_URL
 
   useEffect(() => {
     const validate = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/verify-token", {
+        const response = await axios.get(`${SERVER_URL}/verify-token`, {
           withCredentials: true,
         });
         const { success } = response.data;
