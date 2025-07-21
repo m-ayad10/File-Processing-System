@@ -11,6 +11,7 @@ export const ProtectedRoute = () => {
   useEffect(() => {
     const validate = async () => {
       try {
+        console.log(SERVER_URL);
         const response = await axios.get(`${SERVER_URL}/verify-token`, {
           withCredentials: true,
         });
